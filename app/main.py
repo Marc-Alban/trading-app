@@ -21,8 +21,8 @@ async def index():
     """Simple welcome message displayed at the API root."""
     return {"message": "Trading Bot API", "docs": "/docs"}
 
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
-
 
