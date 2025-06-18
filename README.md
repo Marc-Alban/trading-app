@@ -22,3 +22,15 @@ It exposes a small REST API built with FastAPI.
    uvicorn app.main:app --reload
    ```
 
+Open <http://127.0.0.1:8000/docs> in your browser to explore the API.
+
+## Example usage
+
+With the server running you can query endpoints using any HTTP client. For instance, to check your balance:
+
+```bash
+curl http://127.0.0.1:8000/api/balance
+```
+
+
+
