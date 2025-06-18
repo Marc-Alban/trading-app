@@ -6,6 +6,7 @@ moving-average **crossover** strategy. An optional FastAPI server exposes an
 interactive dashboard so you can view balances, open orders and trade history
 in your browser.
 
+
 ## Setup
 
 1. Install dependencies:
@@ -27,9 +28,11 @@ in your browser.
    The bot uses a moving-average crossover on the pair `XXBTZUSD` by default.
    You can change the pair or risk percentage by editing `bot.py`.
 
+
 You can still start the optional API server with:
 ```bash
 uvicorn app.main:app --reload
 ```
 Then open <http://127.0.0.1:8000> in your browser to view the trading dashboard.
 The API documentation is still available at <http://127.0.0.1:8000/docs> if needed.
+

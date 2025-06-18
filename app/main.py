@@ -24,8 +24,8 @@ async def index() -> FileResponse:
     """Serve the simple trading dashboard."""
     return FileResponse("static/index.html")
 
+
 @app.get("/health")
 async def health():
     return {"status": "ok"}
-
 

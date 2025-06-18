@@ -93,6 +93,7 @@ class TradingService:
         except (TypeError, ValueError):
             return 0.0
 
+
     async def get_ticker(self, pair: str) -> Dict[str, Any]:
         data = await self._make_request(f'/0/public/Ticker?pair={pair}')
         return data.get(pair, {})

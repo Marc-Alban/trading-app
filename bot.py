@@ -46,6 +46,7 @@ async def moving_average_strategy(
                 print("Selling...")
                 resp = await service.place_order(pair, "sell", "market", volume)
                 position = -1
+
                 print("Order response:", resp)
 
             await asyncio.sleep(interval * 60)
