@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 
 from .api.trading_routes import router as trading_router
 
@@ -14,12 +16,13 @@ app.add_middleware(
 )
 
 app.include_router(trading_router, prefix="/api")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-@app.get("/")
-async def index():
-    """Simple welcome message displayed at the API root."""
-    return {"message": "Trading Bot API", "docs": "/docs"}
+@app.get("/", response_class=HTMLResponse)
+async def index() -> FileResponse:
+    """Serve the simple trading dashboard."""
+    return FileResponse("static/index.html")
 
 
 @app.get("/health")
