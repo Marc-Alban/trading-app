@@ -6,6 +6,7 @@ moving-average strategy. An optional FastAPI server exposes an interactive
 dashboard so you can view balances, open orders and trade history in your
 browser.
 
+
 ## Setup
 
 1. Install dependencies:
@@ -31,3 +32,4 @@ uvicorn app.main:app --reload
 ```
 Then open <http://127.0.0.1:8000> in your browser to view the trading dashboard.
 The API documentation is still available at <http://127.0.0.1:8000/docs> if needed.
+
