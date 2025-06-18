@@ -5,26 +5,48 @@ from app.services.trading_service import TradingService
 
 
 async def moving_average_strategy(
-    pair: str = "XXBTZUSD", interval: int = 1, volume: float = 0.001, window: int = 5
+    pair: str = "XXBTZUSD",
+    interval: int = 1,
+    short_window: int = 5,
+    long_window: int = 20,
+    risk: float = 0.1,
 ) -> None:
-    """Run a naive moving-average strategy indefinitely."""
+    """Run a simple moving-average crossover strategy."""
     service = TradingService()
+    position = 0
+    base_asset = pair[:4]
     try:
         while True:
             candles = await service.get_ohlc(pair, interval)
-            closes: List[float] = [float(c[4]) for c in candles[-window:]]
-            average = sum(closes) / len(closes)
+            closes: List[float] = [float(c[4]) for c in candles]
+            if len(closes) < long_window:
+                await asyncio.sleep(interval * 60)
+                continue
+
+            short_ma = sum(closes[-short_window:]) / short_window
+            long_ma = sum(closes[-long_window:]) / long_window
+
             ticker = await service.get_ticker(pair)
             price = float(ticker.get("c", [0])[0])
-            print(f"Price: {price} SMA{window}: {average}")
+            balance = await service.get_balance_asset(base_asset)
+            volume = balance * risk
+            if volume <= 0:
+                volume = 0.001
 
-            if price > average * 1.01:
+            print(
+                f"Price: {price} SMA{short_window}: {short_ma} SMA{long_window}: {long_ma}"
+            )
+
+            if short_ma > long_ma and position <= 0:
                 print("Buying...")
                 resp = await service.place_order(pair, "buy", "market", volume)
+                position = 1
                 print("Order response:", resp)
-            elif price < average * 0.99:
+            elif short_ma < long_ma and position >= 0:
                 print("Selling...")
                 resp = await service.place_order(pair, "sell", "market", volume)
+                position = -1
+
                 print("Order response:", resp)
 
             await asyncio.sleep(interval * 60)

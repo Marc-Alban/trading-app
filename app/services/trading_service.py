@@ -85,6 +85,15 @@ class TradingService:
         data = await self._make_request('/0/private/Balance', auth=True)
         return data
 
+    async def get_balance_asset(self, asset: str) -> float:
+        """Return the available balance for a specific asset."""
+        balances = await self.get_balance()
+        try:
+            return float(balances.get(asset, 0.0))
+        except (TypeError, ValueError):
+            return 0.0
+
+
     async def get_ticker(self, pair: str) -> Dict[str, Any]:
         data = await self._make_request(f'/0/public/Ticker?pair={pair}')
         return data.get(pair, {})

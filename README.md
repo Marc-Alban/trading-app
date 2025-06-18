@@ -1,10 +1,10 @@
 # Kraken Trading Bot
 
 This repository contains a simple trading bot that works with the Kraken API.
-Provide your API credentials in a `.env` file and run the bot to execute a naive
-moving-average strategy. An optional FastAPI server exposes an interactive
-dashboard so you can view balances, open orders and trade history in your
-browser.
+Provide your API credentials in a `.env` file and run the bot to execute a
+moving-average **crossover** strategy. An optional FastAPI server exposes an
+interactive dashboard so you can view balances, open orders and trade history
+in your browser.
 
 
 ## Setup
@@ -25,6 +25,9 @@ browser.
    ```bash
    python bot.py
    ```
+   The bot uses a moving-average crossover on the pair `XXBTZUSD` by default.
+   You can change the pair or risk percentage by editing `bot.py`.
+
 
 You can still start the optional API server with:
 ```bash
