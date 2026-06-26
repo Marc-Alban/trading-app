@@ -1,38 +1,23 @@
-# Kraken Trading Bot
+# 📈 Trading App
 
-This repository contains a simple trading bot that works with the Kraken API.
-Provide your API credentials in a `.env` file and run the bot to execute a
-moving-average **crossover** strategy. An optional FastAPI server exposes an
-interactive dashboard so you can view balances, open orders and trade history
-in your browser.
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 
+> Application de trading complète pour suivre les marchés financiers et gérer un portefeuille virtuel.
 
-## Setup
+## 🚀 Fonctionnalités
+*   Suivi des cours en temps réel (via API externes).
+*   Simulation d'achat et de vente d'actifs.
+*   Tableau de bord complet avec graphiques d'évolution.
+*   Gestion de portefeuille utilisateur.
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## 🛠️ Technologies Utilisées
+*   **Frontend :** React, Chart.js (ou similaire)
+*   **Backend :** Node.js / Symfony (selon l'API)
+*   **Intégrations :** API financières (Crypto/Stocks)
 
-2. Create a `.env` file with your Kraken credentials:
-   ```
-   KRAKEN_API_KEY=your_key
-   KRAKEN_API_SECRET=your_secret
-   ```
-   If the credentials are missing, the bot runs in demo mode with fake data.
-
-3. Run the trading bot:
-   ```bash
-   python bot.py
-   ```
-   The bot uses a moving-average crossover on the pair `XXBTZUSD` by default.
-   You can change the pair or risk percentage by editing `bot.py`.
-
-
-You can still start the optional API server with:
-```bash
-uvicorn app.main:app --reload
-```
-Then open <http://127.0.0.1:8000> in your browser to view the trading dashboard.
-The API documentation is still available at <http://127.0.0.1:8000/docs> if needed.
-
+## ⚙️ Installation
+1. `git clone https://github.com/Marc-Alban/trading-app.git`
+2. `npm install` (ou `composer install` si backend Symfony)
+3. Configurer les clés d'API dans le fichier `.env`.
+4. Lancer le projet : `npm start`
